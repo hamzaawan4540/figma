@@ -39,6 +39,7 @@ dependencies:
   google_fonts: ^6.3.2
   auto_size_text: ^3.0.0
   rename: ^3.1.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:
@@ -66,6 +67,11 @@ flutter:
     - assets/Vector_34.png
     - assets/cursive/
     - assets/recommended/
+    - assets/Vector_1.png
+    - assets/Vector.png
+    - assets/Vector_2.png
+    - assets/setting_icon/
+    - assets/navigationBar/
 
   
  

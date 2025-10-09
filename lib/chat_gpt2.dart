@@ -12,7 +12,16 @@ class ChatGpt2 extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 75, 75, 75),
       ),
@@ -20,7 +29,10 @@ class ChatGpt2 extends StatelessWidget {
 
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+          padding: EdgeInsets.symmetric(
+            vertical: screenHeight * 0.03,
+            horizontal: screenWidth * 0.05,
+          ),
           child: Column(
             children: [
               // Title
@@ -64,6 +76,7 @@ class ChatGpt2 extends StatelessWidget {
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: screenWidth * 0.045,
+                        fontWeight: FontWeight.w600,
                       ),
                       textAlign: TextAlign.center,
                       maxLines: 1,
@@ -82,11 +95,11 @@ class ChatGpt2 extends StatelessWidget {
                       "way that feels natural and intuitive.",
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: screenWidth * 0.04,
+                        fontSize: screenWidth * 0.04, // responsive
                         height: 1.4,
                       ),
                       textAlign: TextAlign.center,
-                      maxLines: 12,
+                      maxLines: 20, // enough for scroll
                     ),
                   ],
                 ),
@@ -95,36 +108,38 @@ class ChatGpt2 extends StatelessWidget {
               SizedBox(height: screenHeight * 0.07),
 
               // Next Button
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  foregroundColor: Colors.white,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.1,
-                    vertical: screenHeight * 0.018,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  elevation: 5,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const RecommendedForU(),
+              SizedBox(
+                width: screenWidth * 0.7,
+                height: screenHeight * 0.07,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
                     ),
-                  );
-                },
-                child: AutoSizeText(
-                  "Next Page",
-                  style: TextStyle(
-                    fontSize: screenWidth * 0.045,
-                    fontWeight: FontWeight.bold,
+                    elevation: 5,
                   ),
-                  maxLines: 1,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const RecommendedForU(),
+                      ),
+                    );
+                  },
+                  child: AutoSizeText(
+                    "Next Page",
+                    style: TextStyle(
+                      fontSize: screenWidth * 0.045,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    maxLines: 1,
+                  ),
                 ),
               ),
+
+              SizedBox(height: screenHeight * 0.03),
             ],
           ),
         ),

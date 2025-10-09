@@ -5,31 +5,51 @@ class Chellenges extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 75, 75, 75),
-        iconTheme: IconThemeData(color: Colors.white),
+        
       ),
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
-      body: SingleChildScrollView(
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.05,
+          vertical: screenHeight * 0.02,
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 🔹 Title
             Center(
               child: Text(
                 "Challenge",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 24,
+                  fontSize: screenWidth * 0.07,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: screenHeight * 0.015),
+
+            // 🔹 Challenge Box
             Container(
-              width: 290,
-              height: 180,
+              width: double.infinity,
+              height: screenHeight * 0.18,
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
                 gradient: RadialGradient(
                   center: Alignment.center,
@@ -41,21 +61,23 @@ class Chellenges extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(screenWidth * 0.05),
                 child: Text(
                   "Let’s start working on the article. First, you need an outline for your article:",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: screenWidth * 0.05,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: screenHeight * 0.015),
+
+            // 🔹 Open Playground Button
             Container(
-              width: 260,
-              height: 65,
+              width: double.infinity,
+              height: screenHeight * 0.07,
               decoration: BoxDecoration(
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(50),
@@ -65,197 +87,132 @@ class Chellenges extends StatelessWidget {
                   'Open Playground',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 22,
+                    fontSize: screenWidth * 0.05,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(50, 20, 0, 0),
-              child: Text(
-                "Now that we have an outline, what's the next step?",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            SizedBox(height: 15),
-            Container(
-              width: 300,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(45),
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Icon(
-                      Icons.check_box_outline_blank,
-                      fontWeight: FontWeight.bold,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Collect data for the aricle",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: 300,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(45),
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Icon(
-                      Icons.check_box_outline_blank,
-                      fontWeight: FontWeight.bold,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Have some rest",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              width: 300,
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(45),
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 15),
-                    child: Icon(
-                      Icons.check_box_outline_blank,
-                      fontWeight: FontWeight.bold,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(
-                    "Finalize the title",
-                    style: TextStyle(color: Colors.white, fontSize: 18),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 10),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Container(
-                width: 300,
-                height: 80,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 15),
-                      child: Icon(
-                        Icons.check_box_outline_blank,
-                        fontWeight: FontWeight.bold,
-                        size: 35,
-                        color: Colors.white,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      // 👈 yeh lagao
-                      child: Text(
-                        "Collect Ask ChatGPT to create an article according to the outline",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+            SizedBox(height: screenHeight * 0.015),
 
-                        maxLines: 3,
-                      ),
-                    ),
-                  ],
-                ),
+            // 🔹 Instruction Text
+            Text(
+              "Now that we have an outline, what's the next step?",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenWidth * 0.045,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: screenHeight * 0.01),
 
+            // 🔹 Checkboxes
+            buildCheckbox(
+              screenWidth,
+              screenHeight,
+              "Collect data for the article",
+            ),
+            SizedBox(height: screenHeight * 0.008),
+            buildCheckbox(screenWidth, screenHeight, "Have some rest"),
+            SizedBox(height: screenHeight * 0.008),
+            buildCheckbox(screenWidth, screenHeight, "Finalize the title"),
+            SizedBox(height: screenHeight * 0.008),
+            buildCheckbox(
+              screenWidth,
+              screenHeight,
+              "Collect Ask ChatGPT to create an article according to the outline",
+            ),
+
+            SizedBox(height: screenHeight * 0.02),
+
+            // 🔹 Hint and Submit Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 108, 108, 108),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Hint",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 25),
-                Container(
-                  width: 100,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 108, 108, 108),
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Submit",
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                  ),
-                ),
+                buildGrayButton(screenWidth, screenHeight, "Hint"),
+                SizedBox(width: screenWidth * 0.06),
+                buildGrayButton(screenWidth, screenHeight, "Submit"),
               ],
             ),
-            SizedBox(height: 15),
-            Container(
-              width: 220,
-              height: 55,
-              decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(50),
-              ),
-              child: Center(
-                child: Text(
-                  'Continue',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+            SizedBox(height: screenHeight * 0.035),
+
+            // 🔹 Continue Button
+            Center(
+              child: Container(
+                width: screenWidth * 0.55,
+                height: screenHeight * 0.07,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(50),
+                ),
+                child: Center(
+                  child: Text(
+                    'Continue',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: screenWidth * 0.05,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: screenHeight * 0.01),
           ],
+        ),
+      ),
+    );
+  }
+
+  // 🔹 Checkbox Builder
+  Widget buildCheckbox(double screenWidth, double screenHeight, String text) {
+    return Container(
+      width: double.infinity,
+      height: screenHeight * 0.055,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.4),
+        borderRadius: BorderRadius.circular(45),
+      ),
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(left: screenWidth * 0.03),
+            child: Icon(
+              Icons.check_box_outline_blank,
+              size: screenWidth * 0.07,
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(width: screenWidth * 0.03),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: screenWidth * 0.04,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 🔹 Gray Button Builder
+  Widget buildGrayButton(double screenWidth, double screenHeight, String text) {
+    return Container(
+      width: screenWidth * 0.35,
+      height: screenHeight * 0.055,
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 108, 108, 108),
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Center(
+        child: Text(
+          text,
+          style: TextStyle(color: Colors.white, fontSize: screenWidth * 0.045),
         ),
       ),
     );

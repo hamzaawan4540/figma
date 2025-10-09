@@ -12,7 +12,16 @@ class Chatgpt extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 75, 75, 75),
         centerTitle: true,
         title: AutoSizeText(
@@ -22,8 +31,14 @@ class Chatgpt extends StatelessWidget {
         ),
         actions: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            margin: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.02,
+              vertical: screenHeight * 0.01,
+            ),
+            padding: EdgeInsets.symmetric(
+              horizontal: screenWidth * 0.03,
+              vertical: screenHeight * 0.005,
+            ),
             decoration: BoxDecoration(
               color: const Color.fromARGB(255, 117, 116, 116),
               borderRadius: BorderRadius.circular(20),
@@ -31,14 +46,14 @@ class Chatgpt extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(3),
+                  padding: EdgeInsets.all(screenWidth * 0.008),
                   decoration: const BoxDecoration(
-                    color: Colors.green,
+                    color: Color.fromARGB(255, 94, 206, 112),
                     shape: BoxShape.circle,
                   ),
-                  child: const Icon(Icons.check, size: 16, color: Colors.white),
+                  child: const Icon(Icons.check, size: 14, color: Colors.white),
                 ),
-                const SizedBox(width: 10),
+                SizedBox(width: screenWidth * 0.02),
                 AutoSizeText(
                   "61%",
                   style: TextStyle(
@@ -55,142 +70,144 @@ class Chatgpt extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // 🔹 Top Container
-            Center(
-              child: Padding(
-                padding: EdgeInsets.only(top: screenHeight * 0.05),
-                child: Container(
-                  width: screenWidth * 0.9,
-                  height: screenHeight * 0.1,
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // 🔹 Top Container
+                Container(
+                  width: double.infinity,
+                  height: screenHeight * 0.12,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(25),
                   ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.07),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AutoSizeText(
-                          "Level 1",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: screenWidth * 0.04,
-                          ),
-                          maxLines: 1,
+                  padding: EdgeInsets.only(left: screenWidth * 0.06),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AutoSizeText(
+                        "Level 1",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenWidth * 0.038,
                         ),
-                        SizedBox(height: screenHeight * 0.005),
-                        AutoSizeText(
-                          "Basics of ChatGPT",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: screenWidth * 0.04,
-                          ),
-                          maxLines: 1,
+                        maxLines: 1,
+                      ),
+                      AutoSizeText(
+                        "Basics of ChatGPT",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: screenWidth * 0.045,
                         ),
-                      ],
-                    ),
+                        maxLines: 1,
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ),
 
-            SizedBox(height: screenHeight * 0.03),
-
-            // 🔹 Steps Column
-            Column(
-              children: [
-                buildStep(
-                  context,
-                  "ChatGPT as LLM",
-                  screenHeight,
-                  screenWidth,
+                // 🔹 Steps Column
+                Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      buildStep(
+                        context,
+                        "ChatGPT as LLM",
+                        screenHeight,
+                        screenWidth,
+                      ),
+                      buildStep(
+                        context,
+                        "Intro to prompting",
+                        screenHeight,
+                        screenWidth,
+                      ),
+                      buildStep(
+                        context,
+                        "Feed ChatGPT with Data",
+                        screenHeight,
+                        screenWidth,
+                      ),
+                      buildStep(
+                        context,
+                        "ChatGPT for SMM",
+                        screenHeight,
+                        screenWidth,
+                        showLine: false,
+                      ),
+                    ],
+                  ),
                 ),
-                buildStep(
-                  context,
-                  "Intro to prompting",
-                  screenHeight,
-                  screenWidth,
-                ),
-                buildStep(
-                  context,
-                  "Feed ChatGPT with Data",
-                  screenHeight,
-                  screenWidth,
-                ),
-                buildStep(
-                  context,
-                  "ChatGPT for SMM",
-                  screenHeight,
-                  screenWidth,
-                  showLine: false,
-                ),
-                SizedBox(height: screenHeight * 0.05),
 
                 // 🔹 Next Button
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    foregroundColor: Colors.white,
-                    minimumSize: Size(screenWidth * 0.7, screenHeight * 0.07),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
+                // 🔹 Next Button
+                SizedBox(height: screenHeight * 0.02),
+                SizedBox(
+                  width: screenWidth * 0.7,
+                  height: screenHeight * 0.07,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      foregroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChatGpt2()),
-                    );
-                  },
-                  child: AutoSizeText(
-                    "Next Page",
-                    style: TextStyle(
-                      fontSize: screenWidth * 0.045,
-                      fontWeight: FontWeight.bold,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ChatGpt2(),
+                        ),
+                      );
+                    },
+                    child: AutoSizeText(
+                      "Next Page",
+                      style: TextStyle(
+                        fontSize: screenWidth * 0.045,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
                     ),
-                    maxLines: 1,
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.03),
+                SizedBox(
+                  height: screenHeight * 0.015,
+                ), // 👈 Added spacing below button
               ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  // 🔹 Step Widget (reusable)
-  Widget buildStep(BuildContext context, String text,
-      double screenHeight, double screenWidth,
-      {bool showLine = true}) {
+  Widget buildStep(
+    BuildContext context,
+    String text,
+    double screenHeight,
+    double screenWidth, {
+    bool showLine = true,
+  }) {
     return Column(
       children: [
         Image.asset(
           "assets/tick_icon.png",
-          width: screenWidth * 0.2,
-          height: screenWidth * 0.2,
+          width: screenWidth * 0.18,
+          height: screenWidth * 0.18,
         ),
-        SizedBox(height: screenHeight * 0.01),
         AutoSizeText(
           text,
           style: TextStyle(color: Colors.white, fontSize: screenWidth * 0.035),
           maxLines: 1,
         ),
-        SizedBox(height: screenHeight * 0.01),
         if (showLine)
-          Container(
-            height: screenHeight * 0.08,
-            width: 2,
-            color: Colors.white,
-          ),
-        SizedBox(height: screenHeight * 0.01),
+          Container(height: screenHeight * 0.06, width: 2, color: Colors.white),
       ],
     );
   }

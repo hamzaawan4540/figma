@@ -1,39 +1,45 @@
-import 'package:figma/profile%20pages/chellenges.dart';
-import 'package:figma/profile%20pages/guides.dart';
-import 'package:figma/profile%20pages/home.dart';
+// ignore: unnecessary_import
+import 'dart:ui';
+import 'package:figma/chatgpt.dart';
+import 'package:figma/chellenges.dart';
+import 'package:figma/prompts_library.dart';
+import 'package:figma/recommended_for_u.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:figma/profile%20pages/profile_screen.dart';
 import 'package:figma/setting.dart';
-import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    // Function for responsive font size
-    double responsiveFont(double size) {
-      return size * (screenWidth / 400);
-    }
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
 
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 52, 102, 70),
         title: Text(
           "Profile",
-          style: TextStyle(color: Colors.white, fontSize: responsiveFont(22)),
+          style: TextStyle(color: Colors.white, fontSize: 22.sp),
         ),
-
         actions: [
           Padding(
-            padding: const EdgeInsets.only(
-              right: 8.0,
-            ), // thoda gap dene ke liye
+            padding: EdgeInsets.only(right: 8.w),
             child: GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -42,10 +48,10 @@ class Profile extends StatelessWidget {
                 );
               },
               child: Image.asset(
-                "assets/Vector_34.png", // apni image ka path
-                height: 80,
-                width: 60,
-                // agar white filter chahiye
+                "assets/recommended/profile_iconss.png",
+                height: 35.h,
+                width: 35.w,
+                color: Colors.white,
               ),
             ),
           ),
@@ -60,17 +66,15 @@ class Profile extends StatelessWidget {
             child: Stack(
               children: [
                 CircleAvatar(
-                  radius: screenWidth * 0.15, // responsive size
+                  radius: 60.r,
                   backgroundColor: Colors.white,
-                  backgroundImage: const AssetImage(
-                    "assets/Ellipse_1.png", // apni image ka path
-                  ),
+                  backgroundImage: const AssetImage("assets/Ellipse_1.png"),
                 ),
                 Positioned(
                   bottom: 0,
-                  right: 4,
+                  right: 4.w,
                   child: Container(
-                    padding: const EdgeInsets.all(6),
+                    padding: EdgeInsets.all(6.w),
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
@@ -78,7 +82,7 @@ class Profile extends StatelessWidget {
                     child: Icon(
                       Icons.camera_alt_outlined,
                       color: Colors.black,
-                      size: responsiveFont(18),
+                      size: 18.sp,
                     ),
                   ),
                 ),
@@ -86,94 +90,78 @@ class Profile extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 10),
+          SizedBox(height: 10.h),
           Text(
             "Figma98",
-            style: TextStyle(color: Colors.white, fontSize: responsiveFont(22)),
+            style: TextStyle(color: Colors.white, fontSize: 22.sp),
           ),
           Text(
             "Figma98@gmail.com",
-            style: TextStyle(color: Colors.white, fontSize: responsiveFont(14)),
+            style: TextStyle(color: Colors.white, fontSize: 14.sp),
           ),
-          SizedBox(height: screenHeight * 0.05),
+          SizedBox(height: 30.h),
 
           // Container 1
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(13.0),
-              child: Container(
-                height: screenHeight * 0.12,
-                width: screenWidth * 0.9,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color.fromARGB(255, 92, 161, 119),
-                      Color.fromARGB(255, 52, 102, 70),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(9),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Start Quiz for more Ai Tools...!',
-                        style: TextStyle(
-                          fontSize: responsiveFont(20),
-                          color: Colors.white,
-                        ),
-                      ),
-                      const SizedBox(height: 0),
-                      Text(
-                        "Take a 1-Minute Quiz",
-                        style: TextStyle(
-                          fontSize: responsiveFont(16),
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // Container 2
           Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.w),
             child: Container(
-              height: screenHeight * 0.1,
-              width: screenWidth * 0.9,
+              height: 90.h,
+              width: 0.9.sw,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 69, 85, 69),
-                borderRadius: BorderRadius.circular(15),
+                gradient: const LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 92, 161, 119),
+                    Color.fromARGB(255, 52, 102, 70),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.circular(10.r),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                padding: EdgeInsets.only(left: 10.w),
+                child: Row(
                   children: [
-                    Text(
-                      'Prompts Library',
-                      style: TextStyle(
-                        fontSize: responsiveFont(16),
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Start Quiz for more Ai Tools...!',
+                          style: TextStyle(
+                            fontSize: 18.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 2.h),
+                        Text(
+                          "Take a 1-Minute Quiz",
+                          style: TextStyle(
+                            fontSize: 14.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 2),
-                    Text(
-                      "All Ai tools available here...!",
-                      style: TextStyle(
-                        fontSize: responsiveFont(14),
-                        color: Colors.white,
-                      ),
+                    Stack(
+                         alignment: Alignment.center, // optional: center align both
+                         children: [
+                           Image.asset(
+                             "assets/setting_icon/home.png",
+                            
+                           ),
+                           Image.asset(
+                             "assets/setting_icon/Vectorrr.png",
+                             height: 30.h,
+                             width: 30.h,
+                             
+                           ),
+                         ],
+                       ),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 35.0,),
+                      child: Image.asset("assets/recommended/container_1.png"),
                     ),
                   ],
                 ),
@@ -181,24 +169,106 @@ class Profile extends StatelessWidget {
             ),
           ),
 
+          // Container 2
+          Padding(
+            padding: EdgeInsets.all(13.w),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PromptsLibrary()),
+                );
+              },
+              child: Container(
+                height: 75.h,
+                width: 0.9.sw,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 69, 85, 69),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.only(left: 15.w, right: 10.w),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      //  Overlapping images
+                      Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Image.asset(
+                            "assets/Vector_1.png",
+                            width: 28.w,
+                            height: 28.h,
+                          ),
+                          Positioned(
+                            left: 6.w,
+                            top: 6.h,
+                            child: Image.asset(
+                              "assets/Vector.png",
+                              width: 28.w,
+                              height: 28.h,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(width: 17.w),
+                      //  Texts
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Prompts Library',
+                            style: TextStyle(
+                              fontSize: 16.sp,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 3.h),
+                          Text(
+                            "All Ai tools available here...!",
+                            style: TextStyle(
+                              fontSize: 14.sp,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 77.0),
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Colors.white,
+                          size: 20.sp,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+
           // Container 3
           Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding: EdgeInsets.all(13.w),
             child: Container(
-              height: screenHeight * 0.1,
-              width: screenWidth * 0.9,
+              height: 75.h,
+              width: 0.9.sw,
               decoration: BoxDecoration(
                 color: const Color.fromARGB(255, 69, 85, 69),
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(15.r),
               ),
               child: Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(left: 15, right: 10),
+                    padding: EdgeInsets.only(right: 5.w),
                     child: Image.asset(
-                      "assets/chatgpt-icon.png",
-                      width: screenWidth * 0.08,
-                      height: screenWidth * 0.08,
+                      "assets/cursive/chatgpt_icon.png",
+                      color: Colors.white,
+                      width: 65.w,
+                      height: 65.h,
                     ),
                   ),
                   Column(
@@ -208,20 +278,25 @@ class Profile extends StatelessWidget {
                       Text(
                         'ChatGpt',
                         style: TextStyle(
-                          fontSize: responsiveFont(16),
+                          fontSize: 16.sp,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      const SizedBox(height: 2),
+                      SizedBox(height: 2.h),
                       Text(
                         "61%",
-                        style: TextStyle(
-                          fontSize: responsiveFont(14),
-                          color: Colors.white,
-                        ),
+                        style: TextStyle(fontSize: 14.sp, color: Colors.white),
                       ),
                     ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 183.0),
+                    child: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 20.sp,
+                    ),
                   ),
                 ],
               ),
@@ -232,8 +307,8 @@ class Profile extends StatelessWidget {
 
       // Bottom Navigation Bar
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
             colors: [
               Color.fromARGB(255, 92, 161, 119),
               Color.fromARGB(255, 52, 102, 70),
@@ -242,14 +317,14 @@ class Profile extends StatelessWidget {
             end: Alignment.bottomCenter,
           ),
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
+            topLeft: Radius.circular(20.r),
+            topRight: Radius.circular(20.r),
           ),
         ),
         child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(10),
-            topRight: Radius.circular(10),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10.r),
+            topRight: Radius.circular(10.r),
           ),
           child: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
@@ -258,30 +333,48 @@ class Profile extends StatelessWidget {
             currentIndex: 0,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.white,
-            items: const [
+            iconSize: 22.sp,
+            items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.home),
+                icon: Image.asset(
+                  'assets/navigationBar/ai_tool.png',
+                  width: 24, // size set karo
+                  height: 24,
+                ),
                 label: "Ai Tools",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.flag),
+                icon: Image.asset(
+                  'assets/navigationBar/chellenges.png',
+                  width: 24, // size set karo
+                  height: 24,
+                ),
                 label: "Challenges",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.menu_book),
+                icon: Image.asset(
+                  'assets/navigationBar/guides.png', // 👈 apni image ka path
+                  width: 24, // size set karo
+                  height: 24,
+                ),
                 label: "Guides",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_rounded),
+                icon: Icon(
+                  Icons.person_2_outlined,
+                  size: 30.sp,
+                  color: Colors.white,
+                ),
                 label: "Profile",
               ),
             ],
             onTap: (index) {
-              // Navigate based on tapped icon
               if (index == 0) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const AiTools()),
+                  MaterialPageRoute(
+                    builder: (context) => const RecommendedForU(),
+                  ),
                 );
               } else if (index == 1) {
                 Navigator.push(
@@ -291,7 +384,7 @@ class Profile extends StatelessWidget {
               } else if (index == 2) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const GuidesScreen()),
+                  MaterialPageRoute(builder: (context) => const Chatgpt()),
                 );
               } else if (index == 3) {
                 Navigator.push(

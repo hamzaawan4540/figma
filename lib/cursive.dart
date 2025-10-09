@@ -1,6 +1,8 @@
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:figma/cursive_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Cursive extends StatelessWidget {
   const Cursive({super.key});
@@ -10,35 +12,44 @@ class Cursive extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    // Responsive font size function
-    double responsiveFont(double size) {
-      return size * (screenWidth / 400);
-    }
+    //  Responsive font helper
+    double rf(double size) => size * (screenWidth / 400);
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
+
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.white),
+         title: Image.asset(
+              'assets/cursive/Coursiv.png',
+              height: 40,
+            ),
+      leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: const Color.fromARGB(255, 75, 75, 75),
         centerTitle: true,
-        title: Text(
-          "Coursiv",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: responsiveFont(20),
-          ),
-        ),
+        
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // ⚡ Badge
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 15, right: 15),
+
+      // 🧱 Body fully fits screen, adjusts with device size
+      body: Center(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.04),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // ⚡ Badge
+              Align(
+                alignment: Alignment.topRight,
                 child: Container(
-                  width: screenWidth * 0.2,
+                  width: screenWidth * 0.22,
                   height: screenHeight * 0.05,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 149, 149, 149),
@@ -47,14 +58,13 @@ class Cursive extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.bolt,
-                          color: Colors.yellow, size: responsiveFont(28)),
-                      const SizedBox(width: 3),
+                      Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(25)),
+                      SizedBox(width: screenWidth * 0.01),
                       Text(
                         "0",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: responsiveFont(20),
+                          fontSize: rf(18),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -62,14 +72,12 @@ class Cursive extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: screenHeight * 0.02),
+              SizedBox(height: screenHeight * 0.015),
 
-            // Weekly Reward Container
-            Center(
-              child: Container(
-                width: screenWidth * 0.9,
+              //  Weekly reward
+              Container(
+                width: double.infinity,
                 padding: EdgeInsets.all(screenWidth * 0.03),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
@@ -78,19 +86,18 @@ class Cursive extends StatelessWidget {
                   ),
                 ),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Icon(Icons.bolt,
-                        color: Colors.yellow, size: responsiveFont(32)),
+                    Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(28)),
+                    SizedBox(width: screenWidth * 0.03),
                     Expanded(
-                      child: RichText(
-                        text: TextSpan(
+                      child: Text.rich(
+                        TextSpan(
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: responsiveFont(16),
+                            fontSize: rf(15),
                           ),
                           children: const [
-                            TextSpan(text: "weekly "),
+                            TextSpan(text: "Weekly "),
                             TextSpan(
                               text: "Lesson ",
                               style: TextStyle(fontWeight: FontWeight.bold),
@@ -107,52 +114,185 @@ class Cursive extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
 
-            SizedBox(height: screenHeight * 0.04),
-
-            // Days Row
+              //  Days row (scrollable only this part)
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-                    .map(
-                      (day) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        child: Container(
-                          width: screenWidth * 0.22,
-                          height: screenHeight * 0.07,
-                          decoration: DottedDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            shape: Shape.box,
-                            strokeWidth: 0.5,
-                            color: const Color.fromARGB(255, 151, 151, 151),
-                          ),
-                          child: Center(
-                            child: Text(
-                              day,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: responsiveFont(18),
-                              ),
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    child: Row(
+                      children: [
+                        // Monday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Mon", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
                             ),
                           ),
                         ),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ),
+                  
+                        // Tuesday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                               Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Tue", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        // Wednesday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Wed", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        // Thursday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                               Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Thu", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        // Friday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Fri", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        // Saturday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                               Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Sat", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                  
+                        // Sunday
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.015),
+                          child: Container(
+                            width: screenWidth * 0.22,
+                            height: screenHeight * 0.065,
+                            decoration: DottedDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              shape: Shape.box,
+                              strokeWidth: 0.5,
+                              color: const Color.fromARGB(255, 151, 151, 151),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                               Icon(Icons.electric_bolt_outlined, color: Colors.yellow, size: rf(20)),
+                                SizedBox(width: screenWidth * 0.01),
+                                Text("Sun", style: TextStyle(color: Colors.white, fontSize: rf(18))),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
 
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20, left: 15),
+              //  Subtitle
+              Align(
+                alignment: Alignment.centerLeft,
                 child: Text(
                   "Pick up where you left off...",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: responsiveFont(20),
+                    fontSize: rf(18),
                     fontWeight: FontWeight.bold,
                     shadows: [
                       Shadow(
@@ -164,54 +304,47 @@ class Cursive extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
 
-            SizedBox(height: screenHeight * 0.05),
-
-            // ChatGPT Icon Stack
-            Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Center(
-                  child: Image.asset(
-                    "assets/chatgpt-icon.png",
-                    width: screenWidth * 0.45,
-                    height: screenWidth * 0.45,
+              // 🌀 ChatGPT Icon Stack
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Center(
+                    child: Image.asset(
+                      "assets/chatgpt-icon.png",
+                      width: screenWidth * 0.4,
+                      height: screenWidth * 0.4,
+                    ),
                   ),
-                ),
-                Positioned(
-                  top: -20,
-                  left: screenWidth * 0.65,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Image.asset(
-                        "assets/Vector.png",
-                        width: screenWidth * 0.15,
-                        height: screenWidth * 0.15,
-                      ),
-                      Text(
-                        "GPT",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: responsiveFont(16),
-                          fontWeight: FontWeight.bold,
+                  Positioned(
+                    top: -20,
+                    left: screenWidth * 0.65,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/Vector_2.png",
+                          width: screenWidth * 0.13,
+                          height: screenWidth * 0.13,
                         ),
-                      ),
-                    ],
+                        Text(
+                          "GPT",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: rf(14),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
+                ],
+              ),
 
-            SizedBox(height: screenHeight * 0.03),
-
-            // ChatGPT Progress Box
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Container(
+              // Progress Bar
+              Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(12),
+                padding: EdgeInsets.all(screenWidth * 0.03),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
@@ -223,33 +356,53 @@ class Cursive extends StatelessWidget {
                   children: [
                     Text(
                       "ChatGPT",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: responsiveFont(18),
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: rf(17)),
                     ),
-                    const SizedBox(height: 10),
-                    Row(
+                    SizedBox(height: screenHeight * 0.01),
+
+                    // Line + Check Button
+                    Stack(
+                      clipBehavior: Clip.none,
                       children: [
-                        Container(
-                          width: screenWidth * 0.55,
-                          height: 5,
-                          color: Colors.white,
+                        // Background line
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            width: double.infinity,
+                            height: 5,
+                            color: Colors.grey,
+                          ),
                         ),
-                        Expanded(
-                          child: Container(height: 5, color: Colors.grey),
+
+                        // Filled line
+                        FractionallySizedBox(
+                          widthFactor: 0.55,
+                          child: Container(height: 5, color: Colors.white),
                         ),
-                        const SizedBox(width: 8),
-                        Transform.translate(
-                          offset: const Offset(-5, -25),
-                          child: CircleAvatar(
-                            radius: 12,
-                            backgroundColor:
-                                const Color.fromARGB(255, 197, 249, 137),
-                            child: const Icon(
-                              Icons.check,
-                              color: Colors.black,
-                              size: 16,
+
+                        //Check button (on top of the line)
+                        Positioned(
+                          right: 0,
+                          top: -35,
+                          child: GestureDetector(
+                            child: Container(
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromARGB(255, 150, 249, 153),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(0.3),
+                                    blurRadius: 3.5,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ],
+                              ),
+                              child: Icon(
+                                Icons.check,
+                                color: Colors.black,
+                                size: 14.sp, // responsive size
+                              ),
                             ),
                           ),
                         ),
@@ -258,35 +411,31 @@ class Cursive extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
 
-            SizedBox(height: screenHeight * 0.03),
-
-            // Continue Button
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                minimumSize: Size(screenWidth * 0.7, screenHeight * 0.07),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+              // Continue button
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  foregroundColor: Colors.white,
+                  minimumSize: Size(screenWidth * 0.7, screenHeight * 0.065),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                 ),
-                elevation: 5,
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Cursive2()),
+                  );
+                },
+                child: Text(
+                  "Continue learning",
+                  style: TextStyle(fontSize: rf(16)),
+                ),
               ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Cursive2()),
-                );
-              },
-              child: Text(
-                "Continue learning",
-                style: TextStyle(fontSize: responsiveFont(16)),
-              ),
-            ),
-
-            SizedBox(height: screenHeight * 0.05),
-          ],
+              SizedBox(height: screenHeight * 0.0010),
+            ],
+          ),
         ),
       ),
     );

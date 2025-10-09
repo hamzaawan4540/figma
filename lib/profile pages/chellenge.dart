@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Chellenges extends StatelessWidget {
-  const Chellenges({super.key});
+class chellenge extends StatelessWidget {
+  const chellenge({super.key});
 
   @override
   Widget build(BuildContext context) {

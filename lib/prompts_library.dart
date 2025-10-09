@@ -1,372 +1,353 @@
 import 'package:figma/cursive.dart';
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'package:figma/prompts_library.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PromptsLibrary extends StatelessWidget {
   const PromptsLibrary({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
+
       appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          backgroundColor: const Color.fromARGB(255, 75, 75, 75),
-          centerTitle: true,
-          title:
-              const Text("Prompts Library", style: TextStyle(color: Colors.white)),
-          actions: [
-            IconButton(
-              color: Colors.white,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Cursive()),
-                );
-              },
-              icon: const Icon(Icons.arrow_forward),
-            )
-          ]),
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+            size: screenWidth * 0.06,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        backgroundColor: const Color.fromARGB(255, 75, 75, 75),
+        centerTitle: true,
+        title: Text(
+          "Prompts Library",
+          style: TextStyle(color: Colors.white, fontSize: 22.sp),
+        ),
+        actions: [
+          IconButton(
+            color: Colors.white,
+            iconSize: 24.sp,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Cursive()),
+              );
+            },
+            icon: const Icon(Icons.search_outlined),
+          ),
+        ],
+      ),
+
       body: SingleChildScrollView(
-        child: Center(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: EdgeInsets.all(12.w),
           child: Column(
             children: [
-              // Container 1
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Basic Application",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 1️⃣ Basic Application
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Basic Application",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 2
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Productivity",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 2️⃣ Productivity
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Productivity",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 3
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Sales",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 3️⃣ Sales
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Sales",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 4
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Sales",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 4️⃣ Marketing
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Marketing",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 5
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Investing",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 5️⃣ Investing
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Investing",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 6
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: Text(
-                              "WebDevolpment & No-Code Prompts",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 22),
-                              overflow: TextOverflow.visible,
-                              softWrap: false,
-                            ),
-                          ),
+              // 6️⃣ Web Development
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Web Development & No-Code Prompts",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 7
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Customer Support",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 7️⃣ Customer Support
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Customer Support",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 8
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                              "Conversion Rate Optimisation ",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 22),
-                              overflow: TextOverflow.visible,
-                              softWrap: false,
-                            ),
-                          ),
+              // 8️⃣ Conversion Rate Optimisation
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Conversion Rate Optimisation",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 9
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.horizontal,
-                            child: Text(
-                              "Products Management Prompts ",
-                              style: const TextStyle(
-                                  color: Colors.white, fontSize: 22),
-                              overflow: TextOverflow.visible,
-                              softWrap: false,
-                            ),
-                          ),
+              // 9️⃣ Product Management
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Product Management Prompts",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
 
-              // Container 10
-              Padding(
-                padding: const EdgeInsets.all(1.0),
-                child: Container(
-                  height: 70,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: const Color.fromARGB(255, 53, 73, 53),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      Padding(
-                        padding: EdgeInsets.only(left: 12),
-                        child: Text(
-                          "Human Resorces",
-                          style: TextStyle(color: Colors.white, fontSize: 22),
+              // 🔟 Human Resources
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 16.h),
+                margin: EdgeInsets.symmetric(vertical: 6.h),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.r),
+                  color: const Color.fromARGB(255, 53, 73, 53),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Human Resources",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 12),
-                        child:
-                            Icon(Icons.arrow_forward_ios, color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.white,
+                      size: 18.sp,
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(height: 15,),
             ],
           ),
         ),
