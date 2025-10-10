@@ -24,7 +24,8 @@ class Setting extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 52, 102, 70),
+        backgroundColor: const Color.fromARGB(255, 75, 75, 75),
+        elevation: 0,
         title: Text(
           "Settings",
           style: TextStyle(color: Colors.white, fontSize: 22.sp),

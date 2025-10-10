@@ -1,7 +1,6 @@
-import 'package:figma/profile.dart';
+import 'package:figma/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// ya jahan se Profile call karni ho
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(400, 800), // base design (your reference)
+      designSize: const Size(400, 800),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
@@ -22,7 +21,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const Profile(),
+      child: const Homepage(),
     );
   }
 }

@@ -199,9 +199,7 @@ class Cursive2 extends StatelessWidget {
                                 fontSize: 20.sp,
                               ),
                             ),
-                            const Spacer(),
-                            Icon(Icons.star, color: Colors.white, size: 22.sp),
-                          ],
+                         ],
                         ),
                       ),
 

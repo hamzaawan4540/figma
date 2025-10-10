@@ -119,18 +119,22 @@ class Check extends StatelessWidget {
                           ),
                         ),
                         child: Padding(
-                          padding: EdgeInsets.all(width * 0.03),
+                          padding: EdgeInsets.all(width * 0.04),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AutoSizeText(
-                                "Task me a clarification recipe so I would not need to think about subject.",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: width * 0.045,
-                                ),
-                                minFontSize: 12,
-                                maxLines: 3,
+                              // Task text with rectangular bubbles for specific words
+                              Wrap(
+                                spacing: width * 0.02,
+                                runSpacing: height * 0.01,
+                                children: [
+                                  buildWordBubble("Task", width),
+                                  buildPlainText("me a", width),
+                                  buildWordBubble("clarification", width),
+                                  buildPlainText("recipe so I", width),
+                                  buildPlainText("would not need to think about", width),
+                                  buildWordBubble("subject", width),
+                                ],
                               ),
                               const Spacer(),
 
@@ -205,7 +209,7 @@ class Check extends StatelessWidget {
                               borderRadius: BorderRadius.circular(5),
                               border: Border.all(color: Colors.grey, width: 2),
                             ),
-                            child: Icon(Icons.close, color: Colors.white, size: 24),
+                            child: Icon(Icons.backspace, color: Colors.white, size: 24),
 
                           )
                     ],
@@ -234,6 +238,50 @@ class Check extends StatelessWidget {
       child: AutoSizeText(
         text,
         style: TextStyle(color: Colors.white, fontSize: width * 0.035),
+        maxLines: 1,
+      ),
+    );
+  }
+
+  // Rectangular Word Bubble Widget for specific words
+  Widget buildWordBubble(String text, double width) {
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: width * 0.03,
+        vertical: width * 0.015,
+      ),
+      decoration: BoxDecoration(
+        color: const Color.fromARGB(255, 90, 90, 90),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: const Color.fromARGB(255, 120, 120, 120),
+          width: 1,
+        ),
+      ),
+      child: AutoSizeText(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: width * 0.038,
+        ),
+        maxLines: 1,
+      ),
+    );
+  }
+
+  // Plain Text Widget (no bubble)
+  Widget buildPlainText(String text, double width) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: width * 0.01,
+        vertical: width * 0.015,
+      ),
+      child: AutoSizeText(
+        text,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: width * 0.038,
+        ),
         maxLines: 1,
       ),
     );

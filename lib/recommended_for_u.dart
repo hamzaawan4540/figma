@@ -73,30 +73,7 @@ class RecommendedForU extends StatelessWidget {
             buildCourseCard(context, width, height, "assets/recommended/Group_2355.png", "Brand Building", "5 hour"),
             SizedBox(height: height * 0.03),
 
-            // Next button
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(
-                  horizontal: width * 0.1,
-                  vertical: height * 0.02,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                elevation: 5,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Check()),
-                );
-              },
-              child: const Text("Next Page"),
-            ),
-            SizedBox(height: height * 0.02),
-          ],
+     ],
         ),
       ),
     );

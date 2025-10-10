@@ -4,9 +4,9 @@ import 'package:figma/chatgpt.dart';
 import 'package:figma/chellenges.dart';
 import 'package:figma/prompts_library.dart';
 import 'package:figma/recommended_for_u.dart';
+import 'package:figma/cursive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:figma/profile%20pages/profile_screen.dart';
 import 'package:figma/setting.dart';
 
 class Profile extends StatelessWidget {
@@ -15,7 +15,6 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 75, 75, 75),
@@ -32,7 +31,8 @@ class Profile extends StatelessWidget {
           },
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 52, 102, 70),
+        backgroundColor: const Color.fromARGB(255, 75, 75, 75),
+        elevation: 0,
         title: Text(
           "Profile",
           style: TextStyle(color: Colors.white, fontSize: 22.sp),
@@ -58,9 +58,11 @@ class Profile extends StatelessWidget {
         ],
       ),
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            SizedBox(height: 20.h),
           // Profile Pic
           Center(
             child: Stack(
@@ -253,56 +255,66 @@ class Profile extends StatelessWidget {
           // Container 3
           Padding(
             padding: EdgeInsets.all(13.w),
-            child: Container(
-              height: 75.h,
-              width: 0.9.sw,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 69, 85, 69),
-                borderRadius: BorderRadius.circular(15.r),
-              ),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 5.w),
-                    child: Image.asset(
-                      "assets/cursive/chatgpt_icon.png",
-                      color: Colors.white,
-                      width: 65.w,
-                      height: 65.h,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Cursive()),
+                );
+              },
+              child: Container(
+                height: 75.h,
+                width: 0.9.sw,
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 69, 85, 69),
+                  borderRadius: BorderRadius.circular(15.r),
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(right: 5.w),
+                      child: Image.asset(
+                        "assets/cursive/chatgpt_icon.png",
+                        color: Colors.white,
+                        width: 65.w,
+                        height: 65.h,
+                      ),
                     ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'ChatGpt',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'ChatGpt',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        "61%",
-                        style: TextStyle(fontSize: 14.sp, color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 183.0),
-                    child: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 20.sp,
+                        SizedBox(height: 2.h),
+                        Text(
+                          "61%",
+                          style: TextStyle(fontSize: 14.sp, color: Colors.white),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 183.0),
+                      child: Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.white,
+                        size: 20.sp,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+          SizedBox(height: 20.h),
         ],
+        ),
       ),
 
       // Bottom Navigation Bar
@@ -390,7 +402,7 @@ class Profile extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ProfileScreen(),
+                    builder: (context) => const Profile(),
                   ),
                 );
               }

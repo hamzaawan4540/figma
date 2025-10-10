@@ -144,42 +144,7 @@ class Chatgpt extends StatelessWidget {
                   ),
                 ),
 
-                // 🔹 Next Button
-                // 🔹 Next Button
-                SizedBox(height: screenHeight * 0.02),
-                SizedBox(
-                  width: screenWidth * 0.7,
-                  height: screenHeight * 0.07,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ChatGpt2(),
-                        ),
-                      );
-                    },
-                    child: AutoSizeText(
-                      "Next Page",
-                      style: TextStyle(
-                        fontSize: screenWidth * 0.045,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      maxLines: 1,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: screenHeight * 0.015,
-                ), // 👈 Added spacing below button
-              ],
+            ],
             ),
           ),
         ),
