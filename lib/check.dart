@@ -7,10 +7,6 @@ class Check extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Screen dimensions
-    final screenHeight = MediaQuery.of(context).size.height;
-    final screenWidth = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -32,7 +28,7 @@ class Check extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //  Top Close Icon
+                  // Close Icon
                   Align(
                     alignment: Alignment.topLeft,
                     child: GestureDetector(
@@ -46,7 +42,7 @@ class Check extends StatelessWidget {
                   ),
                   SizedBox(height: height * 0.03),
 
-                  //  Heading
+                  // Main Heading
                   AutoSizeText(
                     "Fill In The Gap!",
                     style: TextStyle(
